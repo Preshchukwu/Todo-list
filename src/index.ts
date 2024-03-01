@@ -17,17 +17,30 @@ let storage:string[] = []
 function displayarr(arr:string[]){
     OList.innerHTML = ''  
     for(let x:number = 0; x <arr.length; x++){
-        OList.innerHTML += `<li>${arr[x]} </li>`
+        OList.innerHTML += `<li>${arr[x]} </li>  <button> Edit </button> <button onclick deleteTask(${x})> Completed </button>`
     }
 }
+ 
+
+
 
 button.addEventListener("click", ()=>{
-    let textContents = inputField.value.trim()
-    storage.push(textContents)
-
-    displayarr(storage)
+    if(inputField.value != ``){
+        let textContents = inputField.value.trim()
+        storage.push(textContents)
+        inputField.value = ``
+        displayarr(storage)
+    }
 });
 
 
+const deleteTask = (index:number)=>{
+    storage.splice(index, 1)
+    displayarr(storage)
+}
+
+const editTask =(index:number)=>{
+    
+}
 
 
