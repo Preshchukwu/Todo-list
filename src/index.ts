@@ -17,7 +17,7 @@ let storage:string[] = []
 function displayarr(arr:string[]){
     OList.innerHTML = ''  
     for(let x:number = 0; x <arr.length; x++){
-        OList.innerHTML += `<li>${arr[x]} </li>  <button> Edit </button> <button onclick deleteTask(${x})> Completed </button>`
+        OList.innerHTML += `<li>${arr[x]} </li>  <button onclick editTask(${x})> Edit </button> <button onclick deleteTask(${x})> Completed </button>`
     }
 }
  
@@ -40,7 +40,11 @@ const deleteTask = (index:number)=>{
 }
 
 const editTask =(index:number)=>{
-    
+    if(inputField.value != ``){
+        let newText = inputField.value
+        storage.splice(index,1,newText)
+        displayarr(storage)
+    }             
 }
 
 
