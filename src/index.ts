@@ -17,7 +17,7 @@ let storage:string[] = []
 function displayarr(arr:string[]){
     OList.innerHTML = ''  
     for(let x:number = 0; x <arr.length; x++){
-        OList.innerHTML += `<li>${arr[x]} </li>  <button onclick editTask(${x})> Edit </button> <button onclick deleteTask(${x})> Completed </button>`
+        OList.innerHTML += `<li>${arr[x]}  <button class="editButton" onclick = "editTask(${x})"> Edit </button> <button onclick= "deleteTask(${x})" class="deleteButton" > Completed </button> </li> `
     }
 }
  
@@ -29,8 +29,9 @@ button.addEventListener("click", ()=>{
         let textContents = inputField.value.trim()
         storage.push(textContents)
         inputField.value = ``
-        displayarr(storage)
+        
     }
+    displayarr(storage)
 });
 
 
@@ -44,7 +45,8 @@ const editTask =(index:number)=>{
         let newText = inputField.value
         storage.splice(index,1,newText)
         displayarr(storage)
-    }             
+    } 
+    displayarr(storage)            
 }
 
 

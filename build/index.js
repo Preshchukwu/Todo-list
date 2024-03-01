@@ -11,11 +11,26 @@ let storage = [];
 function displayarr(arr) {
     OList.innerHTML = '';
     for (let x = 0; x < arr.length; x++) {
-        OList.innerHTML += `<li>${arr[x]} </li>`;
+        OList.innerHTML += `<li>${arr[x]}  <button class="editButton" onclick = "editTask(${x})"> Edit </button> <button onclick= "deleteTask(${x})" class="deleteButton" > Completed </button> </li> `;
     }
 }
 button.addEventListener("click", () => {
-    let textContents = inputField.value.trim();
-    storage.push(textContents);
+    if (inputField.value != ``) {
+        let textContents = inputField.value.trim();
+        storage.push(textContents);
+        inputField.value = ``;
+    }
     displayarr(storage);
 });
+const deleteTask = (index) => {
+    storage.splice(index, 1);
+    displayarr(storage);
+};
+const editTask = (index) => {
+    if (inputField.value != ``) {
+        let newText = inputField.value;
+        storage.splice(index, 1, newText);
+        displayarr(storage);
+    }
+    displayarr(storage);
+};
